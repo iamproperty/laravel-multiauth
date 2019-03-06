@@ -2,6 +2,7 @@
 
 namespace IAMProperty\MultiAuth;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class MultiAuthServiceProvider extends ServiceProvider
@@ -15,6 +16,10 @@ class MultiAuthServiceProvider extends ServiceProvider
             ->give(function () {
                 return config('multiauth.guard_hint_name');
             });
+
+        $this->app->bind(AuthManager::class, function (Application $app) {
+            return new AuthManager($app);
+        });
     }
 
     private function registerConfig(): void
