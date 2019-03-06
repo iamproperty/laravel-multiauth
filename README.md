@@ -11,6 +11,7 @@ composer install iamproperty/laravel-multiauth
 ```
 
 Register the guard map:
+
 ```
 class AuthServiceProvider
 {
@@ -39,15 +40,16 @@ class EventServiceProvider
 ```
 
 Register the middleware:
+
 ```
 class Kernel extends HttpKernel
 {
     protected $middlewareGroups = [
         'web' => [
             \Illuminate\Session\Middleware\StartSession::class,
-        // Add after the session is started
+            // Add after the session is started
             \IAMProperty\MultiAuth\SetGuardFromHint::class,
-        // ...
+            // ...
 ```
 
 ## Configuration
